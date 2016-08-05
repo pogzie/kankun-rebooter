@@ -12,6 +12,14 @@ In order for you to use this script, you need to have the following items:
 5. The CGI script. [Link] (http://www.anites.com/2015/01/hacking-kankun-smart-wifi-plug.html)
 6. Your internet connections static IP.
 
+## Setup Instructions
+
+1. Login as root to your Kankun plug.
+2. Get the script and put it in root home directory (/root).
+3. Edit and configure the necessary values.
+4. Setup an cronjob (ie 15 minute interval checks `*/15 * * * * /root/reboot.sh >/dev/null 2>&1`).
+5. (optional) Comment out the `wget` for the Maker IFTTT endpoint if you dont want to use it. 
+
 ## What This Script Does
 
 Its quite simple. It cross references the provided IP with the current external IP fetched from ipecho.net and if it matches, it does nothing. If you get a different IP or cant get an IP (I assume it falls back to the `else` condition if theres no connection), it will initiate a reboot via the CGI script. 
