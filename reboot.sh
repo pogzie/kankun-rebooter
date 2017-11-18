@@ -1,24 +1,24 @@
 #!/bin/ash
 # Title: Kankun Plug Rebooter Script
 # Author: Allan Paul Sy Ortile
-# Date: 2016-07-13
-# Version: 0.02 (2016-08-05)
+# Date: 2017-11-18
+# Version: 0.03 (Start Date: 2016-08-05)
 #
 # Put this as a cronjob via crontab -e
 # This will check every 15 minutes if the IP is the same, if not it will reboot the device
-# 	*/15 * * * * /root/reboot.sh >/dev/null 2>&1
+#       */30 * * * * /root/reboot.sh >/dev/null 2>&1
 #
 # Things to change according to your configuration:
-#	<DSL_IP> - This should contain the static IP of your connection. 
-#	<KANKUN_IP> - This is the IP address of your Kankun device which has the relay.cgi script.
-#	<IFTTT_KEY> - Your Maker IFTTT channel key.
+#       <DSL_IP> - This should contain the static IP of your connection.
+#       <KANKUN_IP> - This is the IP address of your Kankun device which has the relay.cgi script.
+#       <IFTTT_KEY> - Your Maker IFTTT channel key.
 #
 
 
 # date
 
-DSL_IP="<DSL_IP>"
-PUBLIC_IP=`wget http://ipecho.net/plain -O - -q ; echo`
+DSL_IP="222.127.179.76"
+PUBLIC_IP=`wget http://icanhazip.com -O - -q ; echo -n`
 
 echo This is your public IP: $PUBLIC_IP
 
@@ -27,15 +27,15 @@ echo This is your public IP: $PUBLIC_IP
 #echo TESTING TESTING TESTING
 
 if [[ $DSL_IP  == $PUBLIC_IP ]];  then
-	echo "Still the same, doing nothing."
+        echo "Still the same, doing nothing."
 else
-	echo "Invoking flip switch."
-	# INSERT TOGGLE OFF HERE
-	wget http://<KANKUN_IP>/cgi-bin/relay.cgi?off -O - -q
-	sleep 10
-	# INSERT TOGGLE ON HERE
-	wget http://<KANKUN_IP>/cgi-bin/relay.cgi?on -O - -q
-	wget http://maker.ifttt.com/trigger/reboot_triggered/with/key/<IFTTT_KEY>> -O - -q
-	echo "Done."
+        echo "Invoking flip switch."
+        # INSERT TOGGLE OFF HERE
+        wget http://192.168.254.130/cgi-bin/relay.cgi?off -O - -q
+        sleep 10
+        # INSERT TOGGLE ON HERE
+        wget http://192.168.254.130/cgi-bin/relay.cgi?on -O - -q
+        # PUSH REPORT TO IFTTT
+        wget http://maker.ifttt.com/trigger/reboot_triggered/with/key/b3C3YfAFBBFoGm2FoA2mfk -O - -q
+        echo "Done."
 fi
-
