@@ -18,7 +18,7 @@ In order for you to use this script, you need to have the following items:
 2. Get the script and put it in root home directory (/root).
 3. Edit and configure the necessary values.
 4. Change the permission of the file to executable (`chmod ugo+x reboot.sh`)
-5. Setup an cronjob (ie 15 minute interval checks `*/15 * * * * /root/reboot.sh >/dev/null 2>&1`).
+5. Setup an cronjob (ie 15 minute interval checks `*/30 * * * * /root/reboot.sh >/dev/null 2>&1`).
 6. (optional) Comment out the `wget` for the Maker IFTTT endpoint if you dont want to use it. 
 
 ## What This Script Does
