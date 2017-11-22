@@ -17,7 +17,7 @@
 
 # date
 
-DSL_IP="222.127.179.76"
+DSL_IP="127.0.0.1"
 PUBLIC_IP=`wget http://icanhazip.com -O - -q ; echo -n`
 
 echo This is your public IP: $PUBLIC_IP
