@@ -31,11 +31,11 @@ if [[ $DSL_IP  == $PUBLIC_IP ]];  then
 else
         echo "Invoking flip switch."
         # INSERT TOGGLE OFF HERE
-        wget http://192.168.254.130/cgi-bin/relay.cgi?off -O - -q
+        wget http://<KANKUN_IP>/cgi-bin/relay.cgi?off -O - -q
         sleep 10
         # INSERT TOGGLE ON HERE
-        wget http://192.168.254.130/cgi-bin/relay.cgi?on -O - -q
+        wget http://<KANKUN_IP>/cgi-bin/relay.cgi?on -O - -q
         # PUSH REPORT TO IFTTT
-        wget http://maker.ifttt.com/trigger/reboot_triggered/with/key/b3C3YfAFBBFoGm2FoA2mfk -O - -q
+        wget http://maker.ifttt.com/trigger/reboot_triggered/with/key/<IFTTT_KEY> -O - -q
         echo "Done."
 fi
